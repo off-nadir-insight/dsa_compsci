@@ -15,9 +15,9 @@ private class StringChallengesTest {
         String result2 = StringChallenges.toUpper(input2);
         String result3 = StringChallenges.toUpper(input3);
         //then
-        Assert.isTrue('HELLO'  == result, 'Expected HELLO');
-        Assert.isTrue('HELLO'  == result2, 'Expected HELLO');
-        Assert.isTrue('22HELLO!!'  == result3, 'Expected 22HELLO!!');
+        Assert.areEqual('HELLO', result, 'Expected HELLO');
+        Assert.areEqual('HELLO', result2, 'Expected HELLO');
+        Assert.areEqual('22HELLO!!', result3, 'Expected 22HELLO!!');
     }
 
     @IsTest
