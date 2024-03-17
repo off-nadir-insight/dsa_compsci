@@ -6,8 +6,8 @@ public with sharing class StringChallenges {
      * @param str the string to upper case
      * @return the string in upper case
      */
-    private static final Integer LOWER_TO_UPPER_OFFSET = -32;
     private static final Integer UPPER_TO_LOWER_OFFSET = 32;
+    private static final Integer LOWER_TO_UPPER_OFFSET = UPPER_TO_LOWER_OFFSET * -1;
     private static final Integer ASCII_LOWER_A = 97;
     private static final Integer ASCII_LOWER_Z = 122;
     private static final Integer ASCII_UPPER_A = 65;
@@ -18,19 +18,15 @@ public with sharing class StringChallenges {
         List<Integer> upperCharIntsList = new List<Integer>();
 
         for (Integer charInt : argumentCharactersIntList) {
-            if (isLowerCaseCharInt(charInt)){
-                Integer upperCharInt = makeUpperCharInt(charInt);
-                upperCharIntsList.add(upperCharInt);
-            } else {
-                upperCharIntsList.add(charInt);
-            }
+            Integer upperCharInt = makeUpperCharInt(charInt);
+            upperCharIntsList.add(upperCharInt);
         }
         String outputStringMadeUpper = String.fromCharArray(upperCharIntsList);
         return outputStringMadeUpper;
     }
 
     private static Integer makeUpperCharInt(Integer inputChar) {
-        if (inputChar >= ASCII_LOWER_A && inputChar <= ASCII_LOWER_Z) {
+        if (isLowerCaseCharInt(inputChar)) {
             return inputChar + LOWER_TO_UPPER_OFFSET;
         } else {
             return inputChar;
@@ -38,7 +34,7 @@ public with sharing class StringChallenges {
     }
 
     private static Boolean isLowerCaseCharInt(Integer inputChar) {
-        return inputChar >= ASCII_a && inputChar <= ASCII_z;
+        return inputChar >= ASCII_LOWER_A && inputChar <= ASCII_LOWER_Z;
     }
 
     /**
