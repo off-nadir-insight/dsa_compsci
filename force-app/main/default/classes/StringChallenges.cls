@@ -25,9 +25,36 @@ public with sharing class StringChallenges {
         return outputStringMadeUpper;
     }
 
+    /**
+     * Given a string return the same string with all letters in lower case.
+     * The string may contain integers and punctuation. They should be ignored.
+     * @param str the string to lower case
+     * @return the string in lower case
+     */
+    public static String toLower(String str) {
+        List<Integer> argumentCharactersIntList = str.getChars();
+        List<Integer> lowerCharIntsList = new List<Integer>();
+
+        for (Integer charInt : argumentCharactersIntList) {
+            Integer lowerCharInt = makeLowerCharInt(charInt);
+            lowerCharIntsList.add(lowerCharInt);
+        }
+        String outputStringMadeLower = String.fromCharArray(lowerCharIntsList);
+        return outputStringMadeLower;
+    }
+
+
     private static Integer makeUpperCharInt(Integer inputChar) {
         if (isLowerCaseCharInt(inputChar)) {
             return inputChar + LOWER_TO_UPPER_OFFSET;
+        } else {
+            return inputChar;
+        }
+    }
+
+    private static Integer makeLowerCharInt(Integer inputChar) {
+        if (isUpperCaseCharInt(inputChar)) {
+            return inputChar + UPPER_TO_LOWER_OFFSET;
         } else {
             return inputChar;
         }
@@ -37,15 +64,8 @@ public with sharing class StringChallenges {
         return inputChar >= ASCII_LOWER_A && inputChar <= ASCII_LOWER_Z;
     }
 
-    /**
-     * Given a string return the same string with all letters in lower case.
-     * The string may contain integers and punctuation. They should be ignored.
-     * @param str the string to lower case
-     * @return the string in lower case
-     */
-    public static String toLower(String str) {
-        //TODO: Implement
-        throw new StringChallengesException('Not Implemented');
+    private static Boolean isUpperCaseCharInt(Integer inputChar) {
+        return inputChar >= ASCII_UPPER_A && inputChar <= ASCII_UPPER_Z;
     }
 
 }
